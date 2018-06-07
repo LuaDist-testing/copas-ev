@@ -1,11 +1,11 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "copas-ev"
-version = "0.3-1"
+version = "0.3-2"
 
 -- LuaDist source
 source = {
-  tag = "0.3-1",
+  tag = "0.3-2",
   url = "git://github.com/LuaDist-testing/copas-ev.git"
 }
 -- Original source
@@ -30,7 +30,6 @@ dependencies = {
    "lua       >= 5.1",
    "lua-ev    >= v1",
    "luasocket >= 2",
-   "luasec    >= 0",
 }
 
 build = {
