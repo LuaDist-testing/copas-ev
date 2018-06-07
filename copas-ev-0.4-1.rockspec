@@ -1,17 +1,17 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "copas-ev"
-version = "0.3-3"
+version = "0.4-1"
 
 -- LuaDist source
 source = {
-  tag = "0.3-3",
+  tag = "0.4-1",
   url = "git://github.com/LuaDist-testing/copas-ev.git"
 }
 -- Original source
 -- source  = {
 --   url = "git://github.com/saucisson/lua-copas-ev.git",
---   tag = "0.3",
+--   tag = "0.4",
 -- }
 
 description = {
