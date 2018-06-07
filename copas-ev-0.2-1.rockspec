@@ -1,21 +1,21 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "copas-ev"
-version = "0.1-1"
+version = "0.2-1"
 -- LuaDist source
 source = {
-  tag = "0.1-1",
+  tag = "0.2-1",
   url = "git://github.com/LuaDist-testing/copas-ev.git"
 }
 -- Original source
 -- source = {
 --   url = "git://github.com/saucisson/lua-copas-ev.git",
---   tag = "0.1",
+--   tag = "0.2",
 -- }
 description = {
    summary = "Copas using libev",
    detailed = [[
-      Copas-ev is a reimplementation of Copas using libev. 
+      Copas-ev is a reimplementation of Copas using libev.
    ]],
    license = "MIT/X11",
    homepage = "https://github.com/saucisson/lua-copas-ev",
