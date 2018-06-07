@@ -1,5 +1,6 @@
                  require "copas" -- fix socket/copas interactions
 local ev       = require "ev"
+local ssl      = pcall (require, "ssl") and require "ssl" or nil
 local coromake = require "coroutine.make"
 
 local Coevas = {}
@@ -381,7 +382,7 @@ function Coevas.accept (coevas, skt)
       return nil, err
     elseif err == "timeout" or err == "wantread" then
       if tostring (socket):sub (1, 3) == "uni" then
-        coevas.sleep (1, on_read)
+        coevas.sleep (1)
       else
         local on_read = ev.IO.new (function (loop, watcher)
           watcher:stop (loop)
@@ -406,6 +407,9 @@ function Coevas.connect (coevas, skt, address, port)
   local sslparams = socket ~= skt and skt._ssl or nil
   repeat
     local ok, err = socket:connect (address, port)
+    if err == "already connected" then
+      ok = true
+    end
     if signal.timeout then
       return nil, err
     elseif err == "timeout" or err == "Operation already in progress" then
@@ -430,7 +434,6 @@ function Coevas.connect (coevas, skt, address, port)
 end
 
 function Coevas.dohandshake (coevas, skt, sslparams)
-  local ssl = require "ssl"
   local ok, err
   local socket = coevas.wrap (coevas.raw (skt))
   socket, err = ssl.wrap (socket, sslparams)
@@ -624,6 +627,15 @@ Socket.Tcp.__index = {
   dohandshake = function (self, parameters)
     return Coevas.dohandshake (self._coevas, self, parameters)
   end,
+  getpeername = function (self)
+    return self._socket:getpeername ()
+  end,
+  getsockname = function (self)
+    return self._socket:getsockname ()
+  end,
+  getstats = function (self)
+    return self._socket:getstats ()
+  end,
 }
 Socket.Tcp.__tostring = function (self)
   return tostring (self._socket)
@@ -670,6 +682,15 @@ Socket.Udp.__index = {
   end,
   dohandshake = function (self, parameters)
     return Coevas.dohandshake (self._coevas, self, parameters)
+  end,
+  getpeername = function (self)
+    return self._socket:getpeername ()
+  end,
+  getsockname = function (self)
+    return self._socket:getsockname ()
+  end,
+  getstats = function (self)
+    return self._socket:getstats ()
   end,
 }
 Socket.Udp.__tostring = function (self)

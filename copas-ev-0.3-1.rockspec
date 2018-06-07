@@ -1,9 +1,18 @@
-package = "copas-ev"
-version = "master-1"
+-- This file was automatically generated for the LuaDist project.
 
-source  = {
-  url = "git://github.com/saucisson/lua-copas-ev.git",
+package = "copas-ev"
+version = "0.3-1"
+
+-- LuaDist source
+source = {
+  tag = "0.3-1",
+  url = "git://github.com/LuaDist-testing/copas-ev.git"
 }
+-- Original source
+-- source  = {
+--   url = "git://github.com/saucisson/lua-copas-ev.git",
+--   tag = "0.3",
+-- }
 
 description = {
   summary    = "Copas using lua-ev",
@@ -21,6 +30,7 @@ dependencies = {
    "lua       >= 5.1",
    "lua-ev    >= v1",
    "luasocket >= 2",
+   "luasec    >= 0",
 }
 
 build = {
